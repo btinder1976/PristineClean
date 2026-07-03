@@ -1,1 +1,64 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" role="img" aria-label="Clean bright living room"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#e6fff5"/><stop offset="1" stop-color="#ffffff"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-opacity=".14"/></filter></defs><rect width="900" height="620" rx="40" fill="url(#g)"/><rect x="70" y="80" width="760" height="420" rx="26" fill="#fff" filter="url(#s)"/><rect x="110" y="120" width="260" height="180" rx="18" fill="#dff8ee"/><circle cx="170" cy="170" r="34" fill="#f7c948"/><rect x="440" y="155" width="270" height="130" rx="18" fill="#176b5b" opacity=".12"/><rect x="160" y="350" width="430" height="95" rx="30" fill="#176b5b"/><rect x="205" y="318" width="120" height="70" rx="22" fill="#2f8b78"/><rect x="430" y="318" width="120" height="70" rx="22" fill="#2f8b78"/><rect x="205" y="440" width="36" height="55" rx="10" fill="#14213d"/><rect x="510" y="440" width="36" height="55" rx="10" fill="#14213d"/><path d="M650 400c80-70 140-68 165 0-54 16-108 18-165 0z" fill="#f7c948"/><path d="M690 390c-22-80 28-128 72-134 4 62-20 103-72 134z" fill="#176b5b"/><circle cx="762" cy="256" r="18" fill="#f7c948"/><text x="90" y="560" font-family="Arial" font-size="34" font-weight="700" fill="#176b5b">A bright, calm, happy home</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 950" role="img" aria-label="Filipina Pristine Clean professional cleaning a bright luxury home">
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#eaf7f1"/></linearGradient>
+    <linearGradient id="counter" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#f8fbfa"/><stop offset="1" stop-color="#dfe9e6"/></linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f2b37d"/><stop offset="1" stop-color="#c97949"/></linearGradient>
+    <linearGradient id="apron" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#0f3e67"/><stop offset="1" stop-color="#092744"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="18" stdDeviation="24" flood-opacity=".18"/></filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+  <rect width="1600" height="950" fill="url(#wall)"/>
+  <circle cx="1340" cy="130" r="190" fill="#fff7df" opacity=".85" filter="url(#soft)"/>
+  <rect x="80" y="90" width="500" height="300" rx="28" fill="#ffffff" opacity=".76"/>
+  <rect x="118" y="130" width="185" height="220" rx="16" fill="#dff4fb"/>
+  <rect x="330" y="130" width="185" height="220" rx="16" fill="#dff4fb"/>
+  <circle cx="440" cy="178" r="52" fill="#f7c948" opacity=".8"/>
+  <rect x="120" y="520" width="610" height="150" rx="35" fill="#efe5dc"/>
+  <rect x="170" y="478" width="170" height="110" rx="28" fill="#f8f2ea"/>
+  <rect x="390" y="478" width="170" height="110" rx="28" fill="#dbe7f4"/>
+  <rect x="160" y="668" width="48" height="88" rx="12" fill="#5b493d"/>
+  <rect x="635" y="668" width="48" height="88" rx="12" fill="#5b493d"/>
+  <rect x="1000" y="88" width="420" height="250" rx="24" fill="#f7f1ea"/>
+  <rect x="1048" y="130" width="324" height="165" rx="18" fill="#14213d" opacity=".9"/>
+  <rect x="1180" y="340" width="320" height="225" rx="26" fill="#fcf8f0"/>
+  <path d="M1305 544c85-88 165-88 205 2-71 24-139 24-205-2z" fill="#f7c948"/>
+  <path d="M1358 535c-42-112 30-190 105-206 10 99-31 167-105 206z" fill="#145c4d"/>
+  <circle cx="1453" cy="332" r="26" fill="#f7c948"/>
+  <rect x="0" y="708" width="1600" height="242" fill="url(#counter)"/>
+  <path d="M0 710 C290 680 450 720 710 690 C995 656 1225 715 1600 670 L1600 950 L0 950 Z" fill="#ffffff" opacity=".88"/>
+  <g filter="url(#shadow)">
+    <ellipse cx="985" cy="258" rx="126" ry="145" fill="#23150f"/>
+    <path d="M892 240c-45 73-35 165 24 227 66-48 103-126 93-211-23-23-61-32-117-16z" fill="#1c120e"/>
+    <path d="M1086 260c67 73 73 180 20 260-73-56-111-142-101-239 19-22 45-29 81-21z" fill="#1c120e"/>
+    <ellipse cx="991" cy="272" rx="94" ry="112" fill="url(#skin)"/>
+    <path d="M900 260c68-126 207-120 246 4-66-20-139-22-246-4z" fill="#26150f"/>
+    <circle cx="949" cy="292" r="7" fill="#372016"/>
+    <circle cx="1030" cy="292" r="7" fill="#372016"/>
+    <path d="M962 345c34 24 70 24 102 0" stroke="#fff" stroke-width="9" stroke-linecap="round"/>
+    <path d="M973 325c11 8 25 8 39 0" stroke="#9b5b3a" stroke-width="5" stroke-linecap="round"/>
+    <path d="M815 520c54-108 137-150 217-150 95 0 167 48 218 151l47 188H760z" fill="#ffffff"/>
+    <path d="M858 520c40-96 103-126 176-126 81 0 134 41 169 126l35 203H820z" fill="url(#apron)"/>
+    <path d="M900 398l-52 145M1166 398l50 145" stroke="#092744" stroke-width="18" stroke-linecap="round"/>
+    <text x="925" y="568" font-family="Georgia, serif" font-size="42" fill="#5ee7ff">Pristine Clean</text>
+    <text x="958" y="602" font-family="Arial" font-size="18" letter-spacing="2" fill="#fff">CLEANING SERVICES</text>
+    <path d="M965 527l40-32 40 32" fill="none" stroke="#5ee7ff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="1006" cy="515" r="5" fill="#fff"/>
+    <path d="M818 548c-76 56-137 104-210 143" stroke="url(#skin)" stroke-width="72" stroke-linecap="round"/>
+    <path d="M1240 546c54 39 88 88 118 151" stroke="url(#skin)" stroke-width="72" stroke-linecap="round"/>
+    <path d="M557 710c88-30 165-34 240-16 38 9 49 53 14 71-87 18-173 10-260-8-42-11-38-36 6-47z" fill="#64d7f0"/>
+    <path d="M595 726c72-20 138-23 200-10" stroke="#0e90b5" stroke-width="9" stroke-linecap="round" opacity=".42"/>
+    <path d="M1332 714c-6-74 8-143 37-207l70 12c-13 67-18 135-14 204z" fill="#e8fbff" stroke="#145c4d" stroke-width="8"/>
+    <rect x="1354" y="463" width="74" height="64" rx="12" fill="#2aa1ff"/>
+    <path d="M1362 464c20-36 48-46 82-28" stroke="#2aa1ff" stroke-width="13" fill="none" stroke-linecap="round"/>
+    <text x="1350" y="642" font-family="Georgia, serif" font-size="24" fill="#145c4d">Pristine</text>
+    <text x="1352" y="670" font-family="Georgia, serif" font-size="24" fill="#145c4d">Clean</text>
+    <path d="M550 690c58-24 112-20 163-6 14 36-5 68-54 83-61 5-104-2-137-25-22-17-12-38 28-52z" fill="#69d8ee"/>
+  </g>
+  <g opacity=".95">
+    <rect x="96" y="84" width="550" height="270" rx="34" fill="rgba(255,255,255,.72)"/>
+    <text x="125" y="165" font-family="Georgia, serif" font-size="78" fill="#12213a">A Cleaner Home.</text>
+    <text x="125" y="250" font-family="Brush Script MT, cursive" font-size="92" fill="#0f61d6">A Better Life.</text>
+    <path d="M130 275h345" stroke="#0f61d6" stroke-width="4" opacity=".75"/>
+    <text x="130" y="325" font-family="Arial" font-size="32" fill="#12213a">Trusted. Reliable. Pristine.</text>
+  </g>
+</svg>
