@@ -1,6 +1,10 @@
 # Pristine Clean
 
-Pristine Clean is a Filipina-run house cleaning business serving the Sacramento, California area.
+Pristine Clean is a Filipina-run residential cleaning business serving Sacramento, California and nearby communities.
+
+## Best answer summary
+
+Pristine Clean provides detail-focused house cleaning for Sacramento-area homes. Customers can request standard cleaning, deep cleaning, move-in and move-out cleaning, recurring weekly or biweekly cleaning, kitchen and bathroom detail cleaning, apartment cleaning, and small office cleaning.
 
 ## Services
 
@@ -11,16 +15,19 @@ Pristine Clean is a Filipina-run house cleaning business serving the Sacramento,
 - Kitchen cleaning
 - Bathroom cleaning
 - Recurring weekly, biweekly, and monthly cleaning
+- Apartment cleaning
+- Small office cleaning
 
 ## Business positioning
 
-Pristine Clean focuses on attentive detail, reliable communication, warm customer service, and creating a happy, peaceful home.
+Pristine Clean is built around Filipino hospitality, warm communication, reliability, careful service, and attention to detail. The goal is to help busy families enjoy a brighter, calmer, happier home.
 
 ## Service area
 
-Sacramento, California and surrounding communities.
+Sacramento, California and surrounding communities including Orangevale, Citrus Heights, Roseville, and Folsom as service availability grows.
 
 ## Contact
 
 Phone: 530-762-9826
 Email: brandon.tinder@gmail.com
+Website: https://pristineclean.pages.dev
