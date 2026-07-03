@@ -1,3 +1,3 @@
-const heroImage = '/assets/hero-cleaner-photo.svg'
+const heroImage = '/assets/pristine-clean-hero.webp'
 
 export default heroImage
