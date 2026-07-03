@@ -1,3 +1,3 @@
-const heroImage = '/assets/hero-cleaner-photo.svg'
+const heroImage = '/assets/hero-clean-home.svg'
 
 export default heroImage
