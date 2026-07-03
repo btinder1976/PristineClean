@@ -34,7 +34,7 @@ const faqs = [
   ['What cleaning services can I request?', 'You can request standard cleaning, deep cleaning, move-in or move-out cleaning, recurring cleaning, kitchen and bathroom detail cleaning, apartment cleaning, and small office cleaning.'],
   ['Is Pristine Clean Filipina-run?', 'Yes. Pristine Clean is a Filipina-run cleaning business built around hospitality, careful work, reliability, and attention to detail.'],
   ['Can I schedule online?', 'Yes. The form on this site collects the cleaning request and prepares the information needed to confirm the appointment.'],
-  ['Can I pay online?', 'Stripe payment support is being connected for deposits, full cleaning payments, and future invoices. For now, the payment button is ready for Stripe configuration.'],
+  ['Can I pay online?', 'Stripe payment support is being connected for deposits, full payments, and future invoices. For now, the payment button is ready for Stripe configuration.'],
   ['Do you offer recurring cleaning?', 'Yes. Customers can request weekly, biweekly, or monthly cleaning. Recurring scheduling and reminders are planned in the next update.']
 ]
 
@@ -141,6 +141,7 @@ function App() {
           </div>
           <div className="hero-visual photo-hero">
             <img src={heroImage} alt="Filipina Pristine Clean professional cleaning a beautiful bright home" />
+            <span className="deploy-marker">Hero image updated</span>
           </div>
         </section>
 
