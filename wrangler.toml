@@ -1,0 +1,16 @@
+name = "pristineclean"
+main = "worker/index.js"
+compatibility_date = "2026-07-02"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+
+[vars]
+SITE_URL = "https://pristineclean.pages.dev"
+
+# After creating Cloudflare D1, uncomment and fill this in:
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "pristineclean-db"
+# database_id = "REPLACE_WITH_D1_DATABASE_ID"
