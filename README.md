@@ -15,3 +15,5 @@ Cloudflare-ready React + Vite + Worker starter for a Filipina-run house cleaning
 - Scheduling API route
 - Stripe Checkout placeholder
 - SEO and AI-friendly content
+
+Deployment trigger: Cloudflare should build this commit.
