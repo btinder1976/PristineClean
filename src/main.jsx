@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { CalendarCheck, CheckCircle2, CreditCard, Home, Mail, MapPin, Phone, ShieldCheck, Sparkles, Star, Users, Wand2 } from 'lucide-react'
+import heroImage from './heroImage.js'
 import './styles.css'
 
 const contact = {
@@ -138,9 +139,8 @@ function App() {
               <span><MapPin size={16}/> Sacramento area</span>
             </div>
           </div>
-          <div className="hero-visual">
-            <img src="/assets/hero-clean-home.svg" alt="Bright clean home after Pristine Clean service" />
-            <div className="quote-card"><Star size={18}/><strong>Built for trust.</strong><span>Clear requests, secure payments, and a professional cleaning experience.</span></div>
+          <div className="hero-visual photo-hero">
+            <img src={heroImage} alt="Filipina Pristine Clean professional cleaning a beautiful bright home" />
           </div>
         </section>
 
