@@ -141,7 +141,6 @@ function App() {
           </div>
           <div className="hero-visual photo-hero">
             <img src={heroImage} alt="Filipina Pristine Clean professional cleaning a beautiful bright home" />
-            <span className="deploy-marker">Hero image updated</span>
           </div>
         </section>
 
