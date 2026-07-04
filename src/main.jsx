@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import { Bath, CalendarCheck, CheckCircle2, ChevronRight, CreditCard, Home, Mail, MapPin, Menu, Phone, ShieldCheck, Sparkles, Star, Users, X } from 'lucide-react'
+import { CalendarCheck, CheckCircle2, ChevronRight, CreditCard, Home, Mail, MapPin, Menu, Phone, ShieldCheck, Sparkles, Star, X } from 'lucide-react'
 import heroImage from './heroImage.js'
 import './styles.css'
 
@@ -162,12 +162,18 @@ function App() {
 }
 
 function HomePage({ navigate }) {
-  return <section className="home-layout">
-    <div className="hero-copy app-card hero-text-card">
-      <p className="eyebrow">Sacramento • Filipina-run • Detail-focused</p>
-      <h1>Clean home. Calm mind. Easy booking.</h1>
-      <p className="lead">Pristine Clean gives busy families a fresh, peaceful home with warm service, modern scheduling, and a detail-first cleaning experience.</p>
-      <div className="actions">
+  return <section className="home-layout image-first-home">
+    <div className="app-card hero-main-tile">
+      <img src={heroImage} alt="Pristine Clean professional cleaning a beautiful bright home" />
+    </div>
+
+    <div className="app-card hero-action-card">
+      <div>
+        <p className="eyebrow">Sacramento • Filipina-run • Detail-focused</p>
+        <h1>Clean home. Calm mind. Easy booking.</h1>
+        <p className="lead">Pristine Clean gives busy families a fresh, peaceful home with warm service, modern scheduling, and a detail-first cleaning experience.</p>
+      </div>
+      <div className="actions compact-actions">
         <button className="button" onClick={() => navigate('Book')}><CalendarCheck size={18}/> Request Quote</button>
         <a className="button ghost" href={contact.phoneHref}><Phone size={18}/> Call Now</a>
       </div>
@@ -177,9 +183,7 @@ function HomePage({ navigate }) {
         <span><MapPin size={16}/> Sacramento area</span>
       </div>
     </div>
-    <div className="app-card hero-photo-card">
-      <img src={heroImage} alt="Pristine Clean professional cleaning a beautiful bright home" />
-    </div>
+
     <div className="quick-grid">
       {services.slice(0, 3).map(service => <button key={service.title} className="quick-card" onClick={() => navigate('Services')}><service.icon/><strong>{service.title}</strong><span>{service.short}</span></button>)}
     </div>
