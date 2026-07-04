@@ -245,13 +245,14 @@ function ReviewsPage() {
 
 function AboutPage({ navigate }) {
   return <section className="screen about-screen">
-    <PageIntro eyebrow="About" title="A feminine, modern cleaning brand built around care." body="Pristine Clean is designed to feel warm, trustworthy, technology-driven, and easy to use from a phone." />
+    <PageIntro eyebrow="About Pristine Clean" title="A cleaner with a story, a purpose, and real pride in the details." body="Pristine Clean is more than a side job. It is a new beginning, a family-supported business, and a way for a hardworking Filipina wife to build something of her own here in Sacramento." />
     <div className="about-grid">
-      <article className="app-card"><h2>Filipina-run hospitality</h2><p>Pristine Clean reflects warmth, pride, reliability, and respect for the customer’s home.</p></article>
-      <article className="app-card"><h2>Technology-forward</h2><p>The website is being built toward online booking, Stripe payments, reminders, customer accounts, and admin tools.</p></article>
-      <article className="app-card"><h2>Designed for families</h2><p>The goal is simple: help busy families enjoy a cleaner, calmer home without losing their weekend.</p></article>
+      <article className="app-card"><h2>Her new beginning</h2><p>A couple of years ago, she came to the United States on a fiancé visa — yes, like the 90 Day Fiancé show. She got married, started building a life here, and wanted a way to earn money through honest work she could be proud of.</p></article>
+      <article className="app-card"><h2>Built with family support</h2><p>With help from her husband, she is turning that desire into Pristine Clean: a local cleaning business built around trust, careful work, and treating every home with respect.</p></article>
+      <article className="app-card"><h2>Taught to clean with pride</h2><p>Her mother taught her that cleaning is not just wiping surfaces. It is taking pride in the work, noticing the details other people miss, and leaving a home feeling cared for.</p></article>
+      <article className="app-card"><h2>Why customers can trust her</h2><p>When she cleans, she brings the kind of value customers actually want in their home: responsibility, humility, consistency, and a genuine desire to do the job right.</p></article>
     </div>
-    <button className="button" onClick={() => navigate('Book')}>Start a Request</button>
+    <button className="button" onClick={() => navigate('Book')}>Request a Cleaning</button>
   </section>
 }
 
