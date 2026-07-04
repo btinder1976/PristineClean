@@ -18,13 +18,18 @@ export async function onRequestGet({ request, env }) {
     await ensureDb(env)
 
     const requests = await env.DB.prepare(
-      `SELECT id, name, email, phone, address, service, preferred_date, notes, status, home_size, preferred_time, quoted_amount_cents, quote_notes, quote_sent_at, created_at, updated_at
+      `SELECT id, name, email, phone, address, service, preferred_date, notes, status, home_size, preferred_time, estimated_duration_minutes, cleaner_id, calendar_event_id, calendar_status, conflict_checked_at, quoted_amount_cents, quote_notes, quote_sent_at, created_at, updated_at
        FROM booking_requests ORDER BY created_at DESC LIMIT 100`
     ).all()
 
     const services = await env.DB.prepare(
       `SELECT id, name, description, base_price_cents, pricing_type, is_active, sort_order, updated_at
        FROM service_catalog ORDER BY sort_order, name`
+    ).all()
+
+    const cleaners = await env.DB.prepare(
+      `SELECT id, name, email, calendar_id, active, service_areas, created_at, updated_at
+       FROM cleaners ORDER BY active DESC, name`
     ).all()
 
     const jobs = await env.DB.prepare(
@@ -37,7 +42,7 @@ export async function onRequestGet({ request, env }) {
        FROM job_photos ORDER BY created_at DESC LIMIT 100`
     ).all()
 
-    return json({ ok: true, requests: requests.results || [], services: services.results || [], jobs: jobs.results || [], photos: photos.results || [] })
+    return json({ ok: true, requests: requests.results || [], services: services.results || [], cleaners: cleaners.results || [], jobs: jobs.results || [], photos: photos.results || [] })
   } catch (error) {
     return json({ ok: false, message: error.message || 'Unable to load admin data' }, 500)
   }
@@ -71,6 +76,16 @@ export async function onRequestPost({ request, env }) {
          VALUES (?, ?, ?, ?, ?, ?, ?, ?)
          ON CONFLICT(id) DO UPDATE SET name = excluded.name, description = excluded.description, base_price_cents = excluded.base_price_cents, pricing_type = excluded.pricing_type, is_active = excluded.is_active, sort_order = excluded.sort_order, updated_at = excluded.updated_at`
       ).bind(id, String(body.name || ''), String(body.description || ''), Number(body.basePriceCents || 0), String(body.pricingType || 'quote'), Number(body.isActive ?? 1), Number(body.sortOrder || 0), now).run()
+      return json({ ok: true, id })
+    }
+
+    if (body.action === 'saveCleaner') {
+      const id = String(body.id || crypto.randomUUID())
+      await env.DB.prepare(
+        `INSERT INTO cleaners (id, name, email, calendar_id, active, service_areas, created_at, updated_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+         ON CONFLICT(id) DO UPDATE SET name = excluded.name, email = excluded.email, calendar_id = excluded.calendar_id, active = excluded.active, service_areas = excluded.service_areas, updated_at = excluded.updated_at`
+      ).bind(id, String(body.name || ''), String(body.email || ''), String(body.calendarId || ''), Number(body.active ?? 1), String(body.serviceAreas || ''), now, now).run()
       return json({ ok: true, id })
     }
 
