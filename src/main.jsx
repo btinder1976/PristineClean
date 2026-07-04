@@ -13,37 +13,15 @@ const contact = {
   url: 'https://pristineclean.pages.dev'
 }
 
+const aboutFounderImage = '/assets/about-founder-golden-gate.webp'
+
 const navItems = ['Home', 'Services', 'Pricing', 'Book', 'Reviews', 'About', 'Contact']
 
 const services = [
-  {
-    title: 'Standard Cleaning',
-    icon: Home,
-    short: 'A fresh, reliable clean for the rooms your family uses every day.',
-    includes: ['Kitchen surfaces', 'Bathrooms', 'Bedrooms', 'Dusting', 'Floors', 'High-touch areas'],
-    price: 'Quote after walkthrough'
-  },
-  {
-    title: 'Deep Cleaning',
-    icon: Sparkles,
-    short: 'A more detailed reset for buildup, baseboards, fixtures, and overlooked spaces.',
-    includes: ['Baseboards', 'Cabinet fronts', 'Appliance exteriors', 'Tubs & showers', 'Detailed dusting', 'Extra attention areas'],
-    price: 'Custom quote'
-  },
-  {
-    title: 'Move-In / Move-Out',
-    icon: CheckCircle2,
-    short: 'Detailed cleaning for apartments, rentals, and homes before or after a move.',
-    includes: ['Empty home cleaning', 'Kitchen & bath detail', 'Inside cabinets by request', 'Floors', 'Counters', 'Final refresh'],
-    price: 'Custom quote'
-  },
-  {
-    title: 'Recurring Cleaning',
-    icon: CalendarCheck,
-    short: 'Weekly, biweekly, or monthly service so your home stays consistently peaceful.',
-    includes: ['Priority scheduling', 'Repeat checklist', 'Routine upkeep', 'Family-friendly reminders', 'Flexible notes', 'Easy rebooking'],
-    price: 'Weekly / biweekly / monthly'
-  }
+  { title: 'Standard Cleaning', icon: Home, short: 'A fresh, reliable clean for the rooms your family uses every day.', includes: ['Kitchen surfaces', 'Bathrooms', 'Bedrooms', 'Dusting', 'Floors', 'High-touch areas'], price: 'Quote after walkthrough' },
+  { title: 'Deep Cleaning', icon: Sparkles, short: 'A more detailed reset for buildup, baseboards, fixtures, and overlooked spaces.', includes: ['Baseboards', 'Cabinet fronts', 'Appliance exteriors', 'Tubs & showers', 'Detailed dusting', 'Extra attention areas'], price: 'Custom quote' },
+  { title: 'Move-In / Move-Out', icon: CheckCircle2, short: 'Detailed cleaning for apartments, rentals, and homes before or after a move.', includes: ['Empty home cleaning', 'Kitchen & bath detail', 'Inside cabinets by request', 'Floors', 'Counters', 'Final refresh'], price: 'Custom quote' },
+  { title: 'Recurring Cleaning', icon: CalendarCheck, short: 'Weekly, biweekly, or monthly service so your home stays consistently peaceful.', includes: ['Priority scheduling', 'Repeat checklist', 'Routine upkeep', 'Family-friendly reminders', 'Flexible notes', 'Easy rebooking'], price: 'Weekly / biweekly / monthly' }
 ]
 
 const reviews = [
@@ -68,43 +46,20 @@ function App() {
   const schema = useMemo(() => ({
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': 'LocalBusiness',
-        '@id': `${contact.url}/#business`,
-        name: 'Pristine Clean',
-        url: contact.url,
-        description: 'Filipina-run house cleaning business serving Sacramento-area homes with detail-focused standard cleaning, deep cleaning, move-in and move-out cleaning, and recurring cleaning.',
-        telephone: '+1-530-762-9826',
-        email: contact.email,
-        address: { '@type': 'PostalAddress', addressLocality: 'Sacramento', addressRegion: 'CA', addressCountry: 'US' },
-        areaServed: ['Sacramento CA', 'Orangevale CA', 'Citrus Heights CA', 'Roseville CA', 'Folsom CA'],
-        priceRange: '$$'
-      },
-      {
-        '@type': 'FAQPage',
-        mainEntity: faqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } }))
-      }
+      { '@type': 'LocalBusiness', '@id': `${contact.url}/#business`, name: 'Pristine Clean', url: contact.url, description: 'Filipina-run house cleaning business serving Sacramento-area homes with detail-focused standard cleaning, deep cleaning, move-in and move-out cleaning, and recurring cleaning.', telephone: '+1-530-762-9826', email: contact.email, address: { '@type': 'PostalAddress', addressLocality: 'Sacramento', addressRegion: 'CA', addressCountry: 'US' }, areaServed: ['Sacramento CA', 'Orangevale CA', 'Citrus Heights CA', 'Roseville CA', 'Folsom CA'], priceRange: '$$' },
+      { '@type': 'FAQPage', mainEntity: faqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) }
     ]
   }), [])
 
-  function navigate(next) {
-    setPage(next)
-    setMenuOpen(false)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  function navigate(next) { setPage(next); setMenuOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }) }
 
   async function submitSchedule(e) {
     e.preventDefault()
     const form = e.currentTarget
     const data = Object.fromEntries(new FormData(form).entries())
     setStatus('Sending your request...')
-
     try {
-      const response = await fetch('/api/schedule', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      })
+      const response = await fetch('/api/schedule', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
       if (!response.ok) throw new Error('API not ready')
       setStatus('Request received. We will follow up to confirm your cleaning.')
       form.reset()
@@ -123,153 +78,62 @@ function App() {
       const data = await response.json()
       if (data.url) window.location.href = data.url
       else throw new Error('Stripe not configured')
-    } catch {
-      setPayStatus('Stripe checkout is ready for the next setup step. Customers can request service now and pay at cleaning.')
-    }
+    } catch { setPayStatus('Stripe checkout is ready for the next setup step. Customers can request service now and pay at cleaning.') }
   }
 
-  return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <div className="app-shell">
-        <header className="topbar">
-          <button className="brand" onClick={() => navigate('Home')}>Pristine<span>Clean</span></button>
-          <nav className="desktop-nav" aria-label="Main navigation">
-            {navItems.map(item => <button key={item} className={page === item ? 'active' : ''} onClick={() => navigate(item)}>{item}</button>)}
-          </nav>
-          <a className="call-pill" href={contact.phoneHref}><Phone size={16}/> {contact.phone}</a>
-          <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Open menu">{menuOpen ? <X/> : <Menu/>}</button>
-        </header>
-
-        {menuOpen && <div className="mobile-menu">{navItems.map(item => <button key={item} onClick={() => navigate(item)}>{item}<ChevronRight size={16}/></button>)}</div>}
-
-        <main className="page-frame">
-          {page === 'Home' && <HomePage navigate={navigate} />}
-          {page === 'Services' && <ServicesPage navigate={navigate} />}
-          {page === 'Pricing' && <PricingPage navigate={navigate} startPayment={startPayment} payStatus={payStatus} />}
-          {page === 'Book' && <BookPage submitSchedule={submitSchedule} status={status} />}
-          {page === 'Reviews' && <ReviewsPage />}
-          {page === 'About' && <AboutPage navigate={navigate} />}
-          {page === 'Contact' && <ContactPage navigate={navigate} />}
-        </main>
-
-        <nav className="bottom-tabs" aria-label="Mobile quick navigation">
-          {['Home', 'Services', 'Book', 'Pricing'].map(item => <button key={item} className={page === item ? 'active' : ''} onClick={() => navigate(item)}>{item}</button>)}
-        </nav>
-      </div>
-    </>
-  )
+  return <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+    <div className="app-shell">
+      <header className="topbar">
+        <button className="brand" onClick={() => navigate('Home')}>Pristine<span>Clean</span></button>
+        <nav className="desktop-nav" aria-label="Main navigation">{navItems.map(item => <button key={item} className={page === item ? 'active' : ''} onClick={() => navigate(item)}>{item}</button>)}</nav>
+        <a className="call-pill" href={contact.phoneHref}><Phone size={16}/> {contact.phone}</a>
+        <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Open menu">{menuOpen ? <X/> : <Menu/>}</button>
+      </header>
+      {menuOpen && <div className="mobile-menu">{navItems.map(item => <button key={item} onClick={() => navigate(item)}>{item}<ChevronRight size={16}/></button>)}</div>}
+      <main className="page-frame">
+        {page === 'Home' && <HomePage navigate={navigate} />}
+        {page === 'Services' && <ServicesPage navigate={navigate} />}
+        {page === 'Pricing' && <PricingPage navigate={navigate} startPayment={startPayment} payStatus={payStatus} />}
+        {page === 'Book' && <BookPage submitSchedule={submitSchedule} status={status} />}
+        {page === 'Reviews' && <ReviewsPage />}
+        {page === 'About' && <AboutPage navigate={navigate} />}
+        {page === 'Contact' && <ContactPage navigate={navigate} />}
+      </main>
+      <nav className="bottom-tabs" aria-label="Mobile quick navigation">{['Home', 'Services', 'Book', 'Pricing'].map(item => <button key={item} className={page === item ? 'active' : ''} onClick={() => navigate(item)}>{item}</button>)}</nav>
+    </div>
+  </>
 }
 
 function HomePage({ navigate }) {
   return <section className="home-layout image-first-home">
-    <div className="app-card hero-main-tile">
-      <img src={heroImage} alt="Pristine Clean professional cleaning a beautiful bright home" />
-    </div>
-
-    <div className="app-card hero-action-card">
-      <div>
-        <p className="eyebrow">Sacramento • Filipina-run • Detail-focused</p>
-        <h1>Clean home. Calm mind. Easy booking.</h1>
-        <p className="lead">Pristine Clean gives busy families a fresh, peaceful home with warm service, modern scheduling, and a detail-first cleaning experience.</p>
-      </div>
-      <div className="actions compact-actions">
-        <button className="button" onClick={() => navigate('Book')}><CalendarCheck size={18}/> Request Quote</button>
-        <a className="button ghost" href={contact.phoneHref}><Phone size={18}/> Call Now</a>
-      </div>
-      <div className="mini-stats">
-        <span><ShieldCheck size={16}/> Secure payment ready</span>
-        <span><Sparkles size={16}/> Detail-focused</span>
-        <span><MapPin size={16}/> Sacramento area</span>
-      </div>
-    </div>
-
-    <div className="quick-grid">
-      {services.slice(0, 3).map(service => <button key={service.title} className="quick-card" onClick={() => navigate('Services')}><service.icon/><strong>{service.title}</strong><span>{service.short}</span></button>)}
-    </div>
+    <div className="app-card hero-main-tile"><img src={heroImage} alt="Pristine Clean professional cleaning a beautiful bright home" /></div>
+    <div className="app-card hero-action-card"><div><p className="eyebrow">Sacramento • Filipina-run • Detail-focused</p><h1>Clean home. Calm mind. Easy booking.</h1><p className="lead">Pristine Clean gives busy families a fresh, peaceful home with warm service, modern scheduling, and a detail-first cleaning experience.</p></div><div className="actions compact-actions"><button className="button" onClick={() => navigate('Book')}><CalendarCheck size={18}/> Request Quote</button><a className="button ghost" href={contact.phoneHref}><Phone size={18}/> Call Now</a></div><div className="mini-stats"><span><ShieldCheck size={16}/> Secure payment ready</span><span><Sparkles size={16}/> Detail-focused</span><span><MapPin size={16}/> Sacramento area</span></div></div>
+    <div className="quick-grid">{services.slice(0, 3).map(service => <button key={service.title} className="quick-card" onClick={() => navigate('Services')}><service.icon/><strong>{service.title}</strong><span>{service.short}</span></button>)}</div>
   </section>
 }
 
-function ServicesPage({ navigate }) {
-  return <section className="screen">
-    <PageIntro eyebrow="Services" title="Choose the cleaning that fits your home." body="Simple cards, clear inclusions, and easy next steps. Tap Book when you are ready to request a quote." />
-    <div className="service-list">
-      {services.map(service => <article className="app-card service-card" key={service.title}>
-        <div className="service-head"><span className="icon-bubble"><service.icon/></span><div><h2>{service.title}</h2><p>{service.short}</p></div></div>
-        <div className="chips">{service.includes.map(item => <span key={item}>{item}</span>)}</div>
-        <button className="text-link" onClick={() => navigate('Book')}>Request this service <ChevronRight size={16}/></button>
-      </article>)}
-    </div>
-  </section>
-}
-
-function PricingPage({ navigate, startPayment, payStatus }) {
-  return <section className="screen">
-    <PageIntro eyebrow="Pricing" title="Simple quotes first. Online deposits next." body="Every home is different. This Phase 1 pricing page explains how customers start without overpromising exact prices too early." />
-    <div className="pricing-grid">
-      {services.map(service => <article className="app-card price-card" key={service.title}><service.icon/><h2>{service.title}</h2><p>{service.price}</p><button className="button slim" onClick={() => navigate('Book')}>Request Quote</button></article>)}
-      <article className="app-card price-card featured"><CreditCard/><h2>Booking Deposit</h2><p>Stripe-ready for a future booking deposit or invoice flow.</p><button className="button slim light" onClick={startPayment}>Test Stripe</button><small>{payStatus}</small></article>
-    </div>
-  </section>
-}
-
-function BookPage({ submitSchedule, status }) {
-  return <section className="screen book-screen">
-    <PageIntro eyebrow="Book online" title="Request a cleaning in under two minutes." body="Designed for phones first. Add the basics now, and Pristine Clean will follow up to confirm details." />
-    <form onSubmit={submitSchedule} className="app-card booking-form">
-      <div className="form-section"><span>1</span><h3>Your contact</h3></div>
-      <label>Name<input name="name" autoComplete="name" required /></label>
-      <label>Phone<input name="phone" type="tel" autoComplete="tel" required /></label>
-      <label>Email<input name="email" type="email" autoComplete="email" required /></label>
-      <div className="form-section"><span>2</span><h3>Your home</h3></div>
-      <label>Address or city<input name="address" required /></label>
-      <label>Home size<select name="homeSize"><option>Not sure yet</option><option>Apartment / condo</option><option>1-2 bedrooms</option><option>3 bedrooms</option><option>4+ bedrooms</option><option>Small office</option></select></label>
-      <label>Service<select name="service" required><option value="">Choose a service</option>{services.map(service => <option key={service.title}>{service.title}</option>)}</select></label>
-      <div className="form-section"><span>3</span><h3>Best time</h3></div>
-      <label>Preferred date<input name="preferredDate" type="date" /></label>
-      <label>Preferred time<select name="preferredTime"><option>Flexible</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></label>
-      <label className="wide">Notes<textarea name="notes" rows="4" placeholder="Bedrooms, bathrooms, pets, special areas, parking, gate code, or timing details." /></label>
-      <button className="button wide" type="submit"><CalendarCheck size={18}/> Send Cleaning Request</button>
-      <p className="status wide">{status}</p>
-    </form>
-  </section>
-}
-
-function ReviewsPage() {
-  return <section className="screen">
-    <PageIntro eyebrow="Reviews" title="Trust builders for a new local brand." body="This page is ready for real customer testimonials as soon as jobs are completed." />
-    <div className="review-grid">{reviews.map(([title, body]) => <article className="app-card review-card" key={title}><div className="stars"><Star/><Star/><Star/><Star/><Star/></div><h2>{title}</h2><p>{body}</p></article>)}</div>
-    <div className="app-card faq-card"><h2>Questions customers ask</h2>{faqs.map(([q,a]) => <details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div>
-  </section>
-}
+function ServicesPage({ navigate }) { return <section className="screen"><PageIntro eyebrow="Services" title="Choose the cleaning that fits your home." body="Simple cards, clear inclusions, and easy next steps. Tap Book when you are ready to request a quote." /><div className="service-list">{services.map(service => <article className="app-card service-card" key={service.title}><div className="service-head"><span className="icon-bubble"><service.icon/></span><div><h2>{service.title}</h2><p>{service.short}</p></div></div><div className="chips">{service.includes.map(item => <span key={item}>{item}</span>)}</div><button className="text-link" onClick={() => navigate('Book')}>Request this service <ChevronRight size={16}/></button></article>)}</div></section> }
+function PricingPage({ navigate, startPayment, payStatus }) { return <section className="screen"><PageIntro eyebrow="Pricing" title="Simple quotes first. Online deposits next." body="Every home is different. This Phase 1 pricing page explains how customers start without overpromising exact prices too early." /><div className="pricing-grid">{services.map(service => <article className="app-card price-card" key={service.title}><service.icon/><h2>{service.title}</h2><p>{service.price}</p><button className="button slim" onClick={() => navigate('Book')}>Request Quote</button></article>)}<article className="app-card price-card featured"><CreditCard/><h2>Booking Deposit</h2><p>Stripe-ready for a future booking deposit or invoice flow.</p><button className="button slim light" onClick={startPayment}>Test Stripe</button><small>{payStatus}</small></article></div></section> }
+function BookPage({ submitSchedule, status }) { return <section className="screen book-screen"><PageIntro eyebrow="Book online" title="Request a cleaning in under two minutes." body="Designed for phones first. Add the basics now, and Pristine Clean will follow up to confirm details." /><form onSubmit={submitSchedule} className="app-card booking-form"><div className="form-section"><span>1</span><h3>Your contact</h3></div><label>Name<input name="name" autoComplete="name" required /></label><label>Phone<input name="phone" type="tel" autoComplete="tel" required /></label><label>Email<input name="email" type="email" autoComplete="email" required /></label><div className="form-section"><span>2</span><h3>Your home</h3></div><label>Address or city<input name="address" required /></label><label>Home size<select name="homeSize"><option>Not sure yet</option><option>Apartment / condo</option><option>1-2 bedrooms</option><option>3 bedrooms</option><option>4+ bedrooms</option><option>Small office</option></select></label><label>Service<select name="service" required><option value="">Choose a service</option>{services.map(service => <option key={service.title}>{service.title}</option>)}</select></label><div className="form-section"><span>3</span><h3>Best time</h3></div><label>Preferred date<input name="preferredDate" type="date" /></label><label>Preferred time<select name="preferredTime"><option>Flexible</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></label><label className="wide">Notes<textarea name="notes" rows="4" placeholder="Bedrooms, bathrooms, pets, special areas, parking, gate code, or timing details." /></label><button className="button wide" type="submit"><CalendarCheck size={18}/> Send Cleaning Request</button><p className="status wide">{status}</p></form></section> }
+function ReviewsPage() { return <section className="screen"><PageIntro eyebrow="Reviews" title="Trust builders for a new local brand." body="This page is ready for real customer testimonials as soon as jobs are completed." /><div className="review-grid">{reviews.map(([title, body]) => <article className="app-card review-card" key={title}><div className="stars"><Star/><Star/><Star/><Star/><Star/></div><h2>{title}</h2><p>{body}</p></article>)}</div><div className="app-card faq-card"><h2>Questions customers ask</h2>{faqs.map(([q,a]) => <details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div></section> }
 
 function AboutPage({ navigate }) {
   return <section className="screen about-screen">
-    <PageIntro eyebrow="About Pristine Clean" title="A cleaner with a story, a purpose, and real pride in the details." body="Pristine Clean is more than a side job. It is a new beginning, a family-supported business, and a way for a hardworking Filipina wife to build something of her own here in Sacramento." />
-    <div className="about-grid">
-      <article className="app-card"><h2>Her new beginning</h2><p>A couple of years ago, she came to the United States on a fiancé visa — yes, like the 90 Day Fiancé show. She got married, started building a life here, and wanted a way to earn money through honest work she could be proud of.</p></article>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '18px', alignItems: 'start' }}>
+      <div><PageIntro eyebrow="About Pristine Clean" title="A cleaner with a story, a purpose, and real pride in the details." body="Pristine Clean is a new beginning, a family-supported business, and a way for a hardworking Filipina wife to build something of her own here in Sacramento." /><button className="button" onClick={() => navigate('Book')}>Request a Cleaning</button></div>
+      <article className="app-card" style={{ overflow: 'hidden', padding: 0 }}><img src={aboutFounderImage} alt="Pristine Clean founder smiling in front of the Golden Gate Bridge" style={{ width: '100%', height: '100%', minHeight: '420px', objectFit: 'cover', objectPosition: 'center', display: 'block' }} /></article>
+    </div>
+    <div className="about-grid" style={{ marginTop: '18px' }}>
+      <article className="app-card"><h2>Her new beginning</h2><p>She came to the United States, got married, started building a life here, and wanted a way to earn money through honest work she could be proud of.</p></article>
       <article className="app-card"><h2>Built with family support</h2><p>With help from her husband, she is turning that desire into Pristine Clean: a local cleaning business built around trust, careful work, and treating every home with respect.</p></article>
       <article className="app-card"><h2>Taught to clean with pride</h2><p>Her mother taught her that cleaning is not just wiping surfaces. It is taking pride in the work, noticing the details other people miss, and leaving a home feeling cared for.</p></article>
       <article className="app-card"><h2>Why customers can trust her</h2><p>When she cleans, she brings the kind of value customers actually want in their home: responsibility, humility, consistency, and a genuine desire to do the job right.</p></article>
     </div>
-    <button className="button" onClick={() => navigate('Book')}>Request a Cleaning</button>
   </section>
 }
 
-function ContactPage({ navigate }) {
-  return <section className="screen contact-screen">
-    <PageIntro eyebrow="Contact" title="Call, email, or request online." body="The fastest path is the Book tab, but customers can also call or email directly." />
-    <div className="contact-cards">
-      <a className="app-card contact-card" href={contact.phoneHref}><Phone/><strong>{contact.phone}</strong><span>Call or text</span></a>
-      <a className="app-card contact-card" href={contact.emailHref}><Mail/><strong>{contact.email}</strong><span>Email request</span></a>
-      <div className="app-card contact-card"><MapPin/><strong>{contact.city}</strong><span>Serving Sacramento area</span></div>
-    </div>
-    <button className="button" onClick={() => navigate('Book')}>Open Booking Form</button>
-  </section>
-}
-
-function PageIntro({ eyebrow, title, body }) {
-  return <div className="page-intro"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{body}</p></div>
-}
+function ContactPage({ navigate }) { return <section className="screen contact-screen"><PageIntro eyebrow="Contact" title="Call, email, or request online." body="The fastest path is the Book tab, but customers can also call or email directly." /><div className="contact-cards"><a className="app-card contact-card" href={contact.phoneHref}><Phone/><strong>{contact.phone}</strong><span>Call or text</span></a><a className="app-card contact-card" href={contact.emailHref}><Mail/><strong>{contact.email}</strong><span>Email request</span></a><div className="app-card contact-card"><MapPin/><strong>{contact.city}</strong><span>Serving Sacramento area</span></div></div><button className="button" onClick={() => navigate('Book')}>Open Booking Form</button></section> }
+function PageIntro({ eyebrow, title, body }) { return <div className="page-intro"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{body}</p></div> }
 
 createRoot(document.getElementById('root')).render(<App />)
